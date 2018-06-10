@@ -4,8 +4,8 @@
   "theme_color": "#1dc17a",
   "background_color": "#2576b7",
   "display": "minimal-ui",
-  "Scope": "/",
-  "start_url": "/",
+  "Scope": "./",
+  "start_url": "./",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

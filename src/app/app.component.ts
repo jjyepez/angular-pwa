@@ -10,6 +10,8 @@ export class AppComponent implements OnInit{
   title = 'app';
 
   // --- jjy
+  panelOpenState: boolean = false;
+  
   constructor(private swUpdate:SwUpdate){
 
   }

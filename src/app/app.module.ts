@@ -13,6 +13,21 @@ import {
   MatButtonModule
 } from "@angular/material";
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+const firebaseConfig:any = {
+  apiKey: "AIzaSyAWxqzVtOuC74J9zVJ72OLl5su7mThp3bo",
+  authDomain: "angular-pwa-1e8cc.firebaseapp.com",
+  databaseURL: "https://angular-pwa-1e8cc.firebaseio.com",
+  projectId: "angular-pwa-1e8cc",
+  storageBucket: "angular-pwa-1e8cc.appspot.com",
+  messagingSenderId: "778964810246"
+};
+
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +40,12 @@ import {
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,7 +13,8 @@ import {
   MatButtonModule,
   MatOptionModule,
   MatSelectModule,
-  MatListModule
+  MatListModule,
+  MatSnackBarModule
 } from "@angular/material";
 
 import { AngularFireModule } from 'angularfire2';
@@ -22,6 +23,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FormsModule } from '@angular/forms';
+import { NoteService } from '../services/notes.service';
 
 const firebaseConfig:any = {
   apiKey: "AIzaSyAWxqzVtOuC74J9zVJ72OLl5su7mThp3bo",
@@ -53,9 +55,12 @@ const firebaseConfig:any = {
     MatOptionModule,
     MatSelectModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    NoteService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

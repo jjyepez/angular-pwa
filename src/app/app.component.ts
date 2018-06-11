@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { NoteService } from '../services/notes.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +16,12 @@ export class AppComponent implements OnInit{
   categorias: any = ['Trabajo', 'Personal'];
   panelOpenState: boolean = false;
   
-  constructor(private swUpdate:SwUpdate){
-
+  constructor(
+    private swUpdate:SwUpdate,
+    private noteService: NoteService,
+    public snackBar: MatSnackBar
+  ){
+    
   }
   ngOnInit(): void{
   	if(this.swUpdate.isEnabled){
@@ -26,6 +32,19 @@ export class AppComponent implements OnInit{
   }
 
   guardarNota() {
-    console.log( this.nota )
+    console.log( this.nota );
+    const id = Date.now();
+    this.nota.id = id;
+    this.noteService.createNote( this.nota )
+        .then( ()=> {
+          this.openSnackBar('¡Nota creada!');
+          this.nota = {};
+        });
+  }
+
+  openSnackBar(msj) {
+    this.snackBar.open(msj, null, {
+      duration: 2000
+    });
   }
 }

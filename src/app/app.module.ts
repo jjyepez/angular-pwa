@@ -14,7 +14,8 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatListModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatCardModule
 } from "@angular/material";
 
 import { AngularFireModule } from 'angularfire2';
@@ -56,7 +57,8 @@ const firebaseConfig:any = {
     MatSelectModule,
     MatListModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
   ],
   providers: [
     NoteService

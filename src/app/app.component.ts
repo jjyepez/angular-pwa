@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  notas: {}[];
   title = 'app';
 
   // --- jjy
@@ -21,7 +22,12 @@ export class AppComponent implements OnInit{
     private noteService: NoteService,
     public snackBar: MatSnackBar
   ){
-    
+    this.noteService.getNotes().valueChanges()
+      .subscribe( (fbNotas)=>{
+        this.limpiarNota();
+        this.notas = fbNotas.reverse();
+        console.log( fbNotas );
+      })
   }
   ngOnInit(): void{
   	if(this.swUpdate.isEnabled){
@@ -30,21 +36,44 @@ export class AppComponent implements OnInit{
   		});
   	}
   }
-
   guardarNota() {
     console.log( this.nota );
-    const id = Date.now();
-    this.nota.id = id;
-    this.noteService.createNote( this.nota )
-        .then( ()=> {
-          this.openSnackBar('¡Nota creada!');
-          this.nota = {};
-        });
+    if(this.nota.id){
+      this.noteService.updateNote( this.nota )
+      .then( ()=> {
+        this.openSnackBar('¡Nota actualizada!');
+      });
+    } else {
+      const id = Date.now();
+      this.nota.id = id;
+      this.noteService.createNote( this.nota )
+          .then( ()=> {
+            this.openSnackBar('¡Nota creada!');
+            this.limpiarNota();
+          });
+    }
   }
-
+  limpiarNota() {
+    this.nota = {};
+  }
   openSnackBar(msj) {
     this.snackBar.open(msj, null, {
       duration: 2000
     });
+  }
+  seleccionarNota(nota){
+    this.nota = nota;
+  }
+  eliminarNota(nota){
+    const rsp = confirm('Confirme la eliminación de '+nota.titulo);
+    if( rsp ){
+      this.noteService.deleteNote(nota)
+        .then( ()=> {
+          this.limpiarNota();
+          this.snackBar.open('Nota eliminada.', null, {
+            duration: 2000
+          })
+        });
+    }
   }
 }

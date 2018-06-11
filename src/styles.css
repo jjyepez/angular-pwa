@@ -7,8 +7,24 @@ body {
    margin: 0;
    background-color: #eee;
 }
-.mat-expansion-panel, .mat-list {
+.mat-expansion-panel, .nota-lista {
    margin: .5rem !important;
+}
+.fecha-nota {
+   font-size: .85rem;
+   opacity: .5;
+   font-style: italic;
+   float: right;
+   font-weight: normal;
+}
+.icono-eliminar{
+   float: right;
+   font-weight: normal;
+   opacity:.5;
+   margin-right: .35rem;
+}
+.icono-eliminar:active, .icono-eliminar:hover{
+   opacity:1;
 }
 @media screen and (max-width:768px){
    .mat-form-field {

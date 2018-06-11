@@ -1,12 +1,13 @@
 <mat-toolbar
   color = "primary"
+  role = "heading"
 >Platzi Notas</mat-toolbar>
 
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }} v3!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <h2>
+    ¡Bienvenid@ a Platzi Notas!
+  </h2>
+  <img width="280" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
 
 <mat-accordion>
@@ -35,26 +36,19 @@
     </mat-form-field>
 
     <br/>
-    <button mat-raised-button color="accent" (click)="guardarNota()">Guardar Nota</button>
+    <button mat-raised-button color="accent" (click)="guardarNota(nota)">Guardar Nota</button>
 
   </mat-expansion-panel>
   
-  <mat-list>
-    <mat-list-item>
-      <h3 matLine> Título 1 </h3>
-      <p matLine> Cuerpo 1 </p>
-      <p matLine class=""> Categoría 1 </p>
-    </mat-list-item>
-    <mat-list-item>
-      <h3 matLine> Título 2 </h3>
-      <p matLine> Cuerpo 2 </p>
-      <p matLine class=""> Categoría 2 </p>
-    </mat-list-item>
-    <mat-list-item>
-      <h3 matLine> Título 3 </h3>
-      <p matLine> Cuerpo 3 </p>
-      <p matLine class=""> Categoría 3 </p>
-    </mat-list-item>
-  </mat-list>
+  <mat-card class="nota-lista" *ngFor="let nota of notas" (click)="seleccionarNota(nota)">
+    <h3 matLine>{{nota.titulo}}
+        <div class='icono-eliminar' (click)="eliminarNota(nota)">❌</div>
+    </h3>
+    <p matLine>{{nota.texto}}</p>
+    <small matLine>
+      {{nota.categoria}}
+      <div class='fecha-nota'>{{nota.id | date}}</div>
+    </small>
+  </mat-card>
 
 </mat-accordion>

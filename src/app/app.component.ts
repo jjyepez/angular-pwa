@@ -10,6 +10,8 @@ export class AppComponent implements OnInit{
   title = 'app';
 
   // --- jjy
+  nota: any = {};
+  categorias: any = ['Trabajo', 'Personal'];
   panelOpenState: boolean = false;
   
   constructor(private swUpdate:SwUpdate){
@@ -21,5 +23,9 @@ export class AppComponent implements OnInit{
   			window.location.reload();
   		});
   	}
+  }
+
+  guardarNota() {
+    console.log( this.nota )
   }
 }

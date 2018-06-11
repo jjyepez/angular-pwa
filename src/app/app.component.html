@@ -1,6 +1,6 @@
 <mat-toolbar
   color = "primary"
->My App</mat-toolbar>
+>Platzi Notas</mat-toolbar>
 
 <div style="text-align:center">
   <h1>
@@ -13,35 +13,48 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Personal data
+        Nota
       </mat-panel-title>
       <mat-panel-description>
-        Type your name and age
+        Crear o editar una Nota
       </mat-panel-description>
     </mat-expansion-panel-header>
 
     <mat-form-field>
-      <input matInput placeholder="First name">
+      <input matInput placeholder="Título de la Nota" [(ngModel)]="nota.titulo">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Age">
+      <mat-select placeholder="Categoría" [(ngModel)]="nota.categoria">
+        <mat-option *ngFor="let cat of categorias" [value]="cat">
+          {{ cat }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Texto de la Nota" [(ngModel)]="nota.texto"></textarea>
+    </mat-form-field>
+
     <br/>
-    <button mat-raised-button color="accent">Click me!</button>
+    <button mat-raised-button color="accent" (click)="guardarNota()">Click me!</button>
 
   </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Self aware panel
-      </mat-panel-title>
-      <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
-    <br/>
-    <button mat-raised-button color="accent">Click me!</button>
-  </mat-expansion-panel>
+  
+  <mat-list>
+    <mat-list-item>
+      <h3 matLine> Título 1 </h3>
+      <p matLine> Cuerpo 1 </p>
+      <p matLine class=""> Categoría 1 </p>
+    </mat-list-item>
+    <mat-list-item>
+      <h3 matLine> Título 2 </h3>
+      <p matLine> Cuerpo 2 </p>
+      <p matLine class=""> Categoría 2 </p>
+    </mat-list-item>
+    <mat-list-item>
+      <h3 matLine> Título 3 </h3>
+      <p matLine> Cuerpo 3 </p>
+      <p matLine class=""> Categoría 3 </p>
+    </mat-list-item>
+  </mat-list>
+
 </mat-accordion>

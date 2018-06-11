@@ -10,7 +10,10 @@ import {
   MatExpansionModule,
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatListModule
 } from "@angular/material";
 
 import { AngularFireModule } from 'angularfire2';
@@ -18,6 +21,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { FormsModule } from '@angular/forms';
 
 const firebaseConfig:any = {
   apiKey: "AIzaSyAWxqzVtOuC74J9zVJ72OLl5su7mThp3bo",
@@ -45,7 +49,11 @@ const firebaseConfig:any = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatListModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

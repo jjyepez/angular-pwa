@@ -1,3 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 /* --- @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+/* --- @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body {
+   margin: 0;
+   background-color: #eee;
+}
+.mat-expansion-panel, .mat-list {
+   margin: .5rem !important;
+}
+@media screen and (max-width:768px){
+   .mat-form-field {
+      width: 100%;
+   }
+}
+@media screen and (min-width:769px){
+   .mat-form-field:first-of-type{
+      margin-right: 2%;
+   }
+   .mat-form-field {
+      width: 49%;
+   }
+}

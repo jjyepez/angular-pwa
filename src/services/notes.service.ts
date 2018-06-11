@@ -19,7 +19,7 @@ export class NoteService {
       // por organizacion y logica
       return this.afDB.database.ref('/notes/'+note.id).set(note);
    }
-   public deleteNote(note){
+   public deleteNote(note){ // Reto 02 del curso
       return this.afDB.database.ref('/notes/'+note.id).remove();
    }
 }

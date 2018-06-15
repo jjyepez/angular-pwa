@@ -25,16 +25,15 @@
   ],
   "dataGroups": [
     {
-      "name":"RedditAPI",
+      "name":"Firebase PWA",
       "urls":[
-        "https://reddit.com/r/memes.json",
-        "https://reddit.com/r/*"
+        "https://angular-pwa-1e8cc.firebaseio.com/**"
       ],
       "cacheConfig":{
         "strategy":"freshness",
-        "maxAge": "1d",
+        "maxAge": "2d",
         "maxSize": 100,
-        "timeout": "3s"
+        "timeout": "5s"
       }
     }
   ]

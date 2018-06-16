@@ -24,7 +24,9 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FormsModule } from '@angular/forms';
+
 import { NoteService } from '../services/notes.service';
+import { AuthService } from '../services/auth.service';
 
 const firebaseConfig:any = {
   apiKey: "AIzaSyAWxqzVtOuC74J9zVJ72OLl5su7mThp3bo",
@@ -61,7 +63,8 @@ const firebaseConfig:any = {
     MatCardModule
   ],
   providers: [
-    NoteService
+    NoteService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { NoteService } from '../services/notes.service';
 import { MatSnackBar } from '@angular/material';
+import { NoteService } from '../services/notes.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,25 +17,28 @@ export class AppComponent implements OnInit{
   nota: any = {};
   categorias: any = ['Trabajo', 'Personal'];
   panelOpenState: boolean = false;
+  loggedIn: boolean = false;
+  usuarioActual: any = {};
   
   constructor(
     private swUpdate:SwUpdate,
     private noteService: NoteService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public authService: AuthService
   ){
-    this.noteService.getNotes().valueChanges()
-      .subscribe( (fbNotas)=>{
-        this.limpiarNota();
-        this.notas = fbNotas.reverse();
-        console.log( fbNotas );
-      })
+    
   }
   ngOnInit(): void{
-  	if(this.swUpdate.isEnabled){
-  		this.swUpdate.available.subscribe(()=>{
-  			window.location.reload();
-  		});
-  	}
+    if(!this.loggedIn){
+      console.log('sin login')
+    } else {
+      console.log('ok')
+      if(this.swUpdate.isEnabled){
+        this.swUpdate.available.subscribe(()=>{
+          window.location.reload();
+        });
+      }
+    }
   }
   guardarNota() {
     console.log( this.nota );
@@ -46,6 +50,7 @@ export class AppComponent implements OnInit{
     } else {
       const id = Date.now();
       this.nota.id = id;
+      this.nota.author = this.usuarioActual.uid;
       this.noteService.createNote( this.nota )
           .then( ()=> {
             this.openSnackBar('¡Nota creada!');
@@ -75,5 +80,28 @@ export class AppComponent implements OnInit{
           })
         });
     }
+  }
+  login(){
+    this.authService.loginWithGoogle()
+    .then( rsp => {
+      console.log(rsp);
+      this.usuarioActual = rsp.user;
+      this.loggedIn = true;
+      this.openSnackBar('¡Ha iniciado sesión!');
+      this.cargarNotas();
+    });
+  }
+  logout(){
+    this.authService.logout();
+    this.loggedIn = false;
+    this.openSnackBar('¡Ha finalizado sesión!');
+  }
+  cargarNotas(){
+    this.noteService.getNotes().valueChanges()
+      .subscribe( (fbNotas)=>{
+        this.limpiarNota();
+        this.notas = fbNotas.reverse();
+        console.log( fbNotas );
+      })
   }
 }
